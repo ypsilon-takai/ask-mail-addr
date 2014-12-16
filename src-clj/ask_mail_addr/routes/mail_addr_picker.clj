@@ -4,7 +4,7 @@
             [compojure.handler :as handler]
             [compojure.route :as route]
             [hiccup.form :refer :all]
-            [hiccup.page :refer [html5 include-css]]
+            [hiccup.page :refer [html5 include-css include-js]]
             [hiccup.util :as util]
             [ask-mail-addr.models.ldap :as ldap]))
 
@@ -15,7 +15,8 @@
     [:meta {:http-equiv "content-type" :content "text/html;charset=utf-8"}]]
    [:body
     "変換したいメール名を入力してください。 ；や改行で区切って複数入力できます。"
-    (form-to [:post "/mail-addr/ask"]
+    (form-to {:id "main-form"}
+             [:post "/mail-addr/ask"]
              (text-area {:id "user-list"
                          :style "width:250px; height:150px;"}
                         :user-list)
@@ -26,7 +27,11 @@
     [:div
      [:p {:id "result-area"
           :name "result-area"}
-      "Reselt will be here"]]]))
+      "Reselt will be here"]
+     (text-area {:id "result-area"
+                 :style "width:300px; height:150px;"}
+                :result-area)]
+    (include-js "public/js/query.js")]))
 
 
 (defn print-result [info-list]
