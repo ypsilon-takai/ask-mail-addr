@@ -18,8 +18,8 @@
 
 (defroutes app-routes
   (GET "/mail-addr" [] (maddr/mail-addr-picker))
-  (POST "/mail-addr/ask" [user-list]
-        (maddr/get-maddr user-list))
+  (POST "/mail-addr/ask" [user-list] 
+        (maddr/get-maddr-edn user-list))
   (route/resources "/public/")
   (route/not-found "Not Found"))
 

@@ -6,6 +6,7 @@
                  [compojure "1.1.8"]
                  [hiccup "1.0.5"]
                  [domina "1.0.2"]
+                 [cljs-ajax "0.3.3"]
                  [org.clojure/tools.nrepl "0.2.5"]
                  [cider/cider-nrepl "0.8.1"]
                  [org.clojars.pntblnk/clj-ldap "0.0.9"]]

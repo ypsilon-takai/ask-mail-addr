@@ -37,5 +37,11 @@
          (str dispname "&lt;" addr "&gt;" ))
        (str/join "<br>" ,,)))
 
+
 (defn get-maddr [user-list]
   (print-result (ldap/ask-all-email-address user-list)))
+
+(defn get-maddr-edn [user-list]
+  (str (vec (ldap/ask-all-email-address user-list))))
+
+
