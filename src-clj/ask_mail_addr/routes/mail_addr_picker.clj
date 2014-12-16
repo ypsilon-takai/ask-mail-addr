@@ -14,11 +14,19 @@
     [:title "Mail address picker"]
     [:meta {:http-equiv "content-type" :content "text/html;charset=utf-8"}]]
    [:body
-    "変換したいメール名を入力してください。 ；で区切れば、複数入力できます。"
+    "変換したいメール名を入力してください。 ；や改行で区切って複数入力できます。"
     (form-to [:post "/mail-addr/ask"]
-             (text-area {:style "width:250px; height:150px;"} "user-list")
+             (text-area {:id "user-list"
+                         :style "width:250px; height:150px;"}
+                        :user-list)
              [:br]
-             (submit-button :submit))]))
+             (submit-button {:id "submit"}
+                            :submit))
+    [:br]
+    [:div
+     [:p {:id "result-area"
+          :name "result-area"}
+      "Reselt will be here"]]]))
 
 
 (defn print-result [info-list]
@@ -28,5 +36,3 @@
 
 (defn get-maddr [user-list]
   (print-result (ldap/ask-all-email-address user-list)))
-
-
