@@ -25,9 +25,7 @@
                             :submit))
     [:br]
     [:div
-     [:p {:id "result-area"
-          :name "result-area"}
-      "Reselt will be here"]
+     [:p "Reselt will be here"]
      (text-area {:id "result-area"
                  :style "width:300px; height:150px;"}
                 :result-area)]

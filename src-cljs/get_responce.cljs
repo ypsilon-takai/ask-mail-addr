@@ -12,12 +12,14 @@
 
 (defn test-func []
   (let [text-area (dom/by-id "result-area")]
-    (dom/set-value! text-area "IT WORKS!")))
+    (dom/set-value! text-area "IT WORKS!")
+    false))
 
 (defn init []
   (if (and js/document
            (.-getElementById js/document))
-    (let [main-form (.getElementById js/document "main-form")]
+    (let [main-form (dom/by-id "main-form")]
       (set! (.-onsubmit main-form) test-func))))
 
 (set! (.-onload js/window) init)
+
