@@ -352,7 +352,7 @@ __後__
         responce (cljs.reader/read-string result)
         disp-data (disp-name-and-addr responce)]
     (dom/set-value! text-area disp-data)))
-	```
+```
 
 コールバック関数`receiver`が受け取ったデータを`disp-name-and-addr`に渡して、
 返ってきたテキストを表示テキストエリアに書き込みます。
