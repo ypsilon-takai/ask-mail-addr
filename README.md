@@ -40,7 +40,7 @@ LDAP(Exchange)サーバーに接続して、表示名をメールアドレスに
 ------------------------------
 ## ClojureScript を入れる準備
 
-Tag 1.0.1 で行なった変更です。
+[1.0.1 で行なった変更です。](https://github.com/ypsilon-takai/ask-mail-addr/tree/1.0.1)
 
 ### project.cljを変更
 `project.clj` に`ClojureScript`を使うための設定を入れます。
@@ -76,12 +76,10 @@ src/cljとする流儀もあるようですが、階層が深くならない`src
 
 cider-jack-in(C-c M-j)して、REPLを立ち上げ、(ask-mail-addr.repl/start-server) を起動して動作確認します。
 
-[ここまでの修正版は1.0.1です](https://github.com/ypsilon-takai/ask-mail-addr/tree/1.0.3)
-
 ------------------------------
 ## ClojureScriptを入れてみる
 
-このあたりはTag 1.0.2
+[ここで1.0.2になります](https://github.com/ypsilon-takai/ask-mail-addr/tree/1.0.2)
 
 ### ページをJS対応にする
 
@@ -117,9 +115,8 @@ cider-jack-in(C-c M-j)して、REPLを立ち上げ、(ask-mail-addr.repl/start-s
 
 ここまで書くと、見た目はこんなふうになります。
 
-[これが1.0.2です](https://github.com/ypsilon-takai/ask-mail-addr/tree/1.0.3)
-
 ![出力エリア追加状態の図](https://github.com/ypsilon-takai/ask-mail-addr/blob/master/article/img_V102_01.png)
+
 
 ### ClojureScript を書く
 `src-cjls`ディレクトリに、cjlsファイルを作成します。ファイル名は`get_responce.cljs`としました。
@@ -249,6 +246,7 @@ ClojureScriptは書いたことはないんですが、すでに本は読んで�
 ## コードの修正
 
 コード修正します。
+[これで1.0.3になります](https://github.com/ypsilon-takai/ask-mail-addr/tree/1.0.3)
 
 ついでに、lein cljsbuild を実行したときに出た warning のところも修正しておきます。
 `:builds`のところがベクタになってます。
@@ -275,8 +273,7 @@ __後__
                            :pretty-print true}}]}
 ```
 
-[ここまでの修正版は1.0.3です](https://github.com/ypsilon-takai/ask-mail-addr/tree/1.0.3)
-
+修正したときの画面がこれ。
 ![IT WORKS!](https://github.com/ypsilon-takai/ask-mail-addr/blob/master/article/img_V102_02.png)
 ------------------------------
 ## LDAPの情報を取得するようにする
@@ -359,22 +356,22 @@ __後__
 
 `edn`文字列からデータへの変換は、`cljs.reader/read-string`を使います。
 
-データを表示文字列に変換する関数`disp-name-and-addr`はひっかかったところで、
-もともとこんなふうに書いてました。
+ところで、データを表示文字列に変換する関数`disp-name-and-addr`は初めはこんなふうに書いてました。
 
 ```clojure
 (defn disp-name-and-addr [infos]
-  (->> (for [{name :displayName addr :emailAddress}] infos]
+  (->> (for [{name :displayName addr :emailAddress} infos]
          (str name "<" addr ">"))
        (clojure.string/join "\n" ,,)))
 ```
 
-これが動かない。 なんで？
+これが動かない。 for文のデストラクチャリングが動いてないみたい。なんで？
 
-### 動きました。
-さて、とりあえず、動きましたので、ここでおしまいです。
 
-[ソース](https://github.com/ypsilon-takai/ask-mail-addr/tree/2.0.0)
+### ともあれ動きました。
+さて、気にいらないところはありますが、とりあえず動きましたので、ここでおしまいです。
+
+[ソース Ver. 2.0.0](https://github.com/ypsilon-takai/ask-mail-addr/tree/2.0.0)
 
 
 ## JavaScriptの作法 2
